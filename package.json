@@ -1,0 +1,24 @@
+{
+  "name": "pokematch",
+  "version": "1.0.0",
+  "description": "A tile matching game using Pokemon characters!",
+  "main": "app.js",
+  "dependencies": {
+    "express": "^4.14.0",
+    "pokemon-sprites": "^1.0.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/droidenator/pokematch.git"
+  },
+  "author": "Sean Corrales",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/droidenator/pokematch/issues"
+  },
+  "homepage": "https://github.com/droidenator/pokematch#readme"
+}
