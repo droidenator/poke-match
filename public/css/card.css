@@ -12,6 +12,12 @@
   background-color: #000;
   position: relative;
   cursor: pointer;
+  transition: opacity .3s ease-out;
+  opacity: 1;
+}
+
+.card-wrapper.matched {
+  opacity: 0;
 }
 
 .card {

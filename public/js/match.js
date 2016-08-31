@@ -14,6 +14,7 @@ function buildDeck(data) {
   let deck = data.reduce((deck, item) => {
     let newCard = cardTemplate.cloneNode(true);
     newCard.getElementsByTagName('img')[0].src = item.url;
+    newCard.setAttribute('data-id', item.id);
     let dupeCard = newCard.cloneNode(true);
     deck.push(newCard, dupeCard);
     return deck;
@@ -30,7 +31,6 @@ function buildDeck(data) {
 }
 
 function shuffleDeck(deck, secondPass) {
-  console.log('shuffling');
   let shuffled = deck.slice(0);
   let length = shuffled.length;
 
@@ -49,14 +49,29 @@ function shuffleDeck(deck, secondPass) {
 }
 
 function cardClickHandler(event) {
+  if(document.getElementsByClassName('selected').length >= 2) {
+    return false;
+  }
+
   if(this.className.indexOf('selected') > -1) {
     this.className = this.className.replace(' selected', '');
   } else {
     this.className += ' selected';
   }
+  let selected = document.getElementsByClassName('selected');
+
+  if(selected.length >= 2) {
+    setTimeout(function() {
+      const matchClass = (selected[0].getAttribute('data-id') == selected[1].getAttribute('data-id')) ? ' matched' : '';
+      for(let i = selected.length - 1; i >= 0; i--) {
+        selected[i].className = selected[i].className.replace(' selected', matchClass);
+      }
+    }, 1500);
+  }
+
 }
 
-makeRequest('/tiles/5', function(data) {
+makeRequest('/tiles/10', function(data) {
   buildDeck(data);
 });
 
