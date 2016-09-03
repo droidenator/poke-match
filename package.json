@@ -1,5 +1,8 @@
 {
   "name": "pokematch",
+  "babel": {
+    "presets": ["es2015"]
+  },
   "version": "1.0.0",
   "description": "A tile matching game using Pokemon characters!",
   "main": "app.js",
@@ -7,8 +10,11 @@
     "express": "^4.14.0",
     "pokemon-sprites": "github:PokeAPI/sprites"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "babel-cli": "^6.14.0"
+  },
   "scripts": {
+    "build": "babel public/js/src/ -o public/js/script.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
