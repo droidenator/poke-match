@@ -5,7 +5,7 @@ window.onload = initialize;
 function initialize() {
   const body = document.getElementsByClassName('loading')[0];
 
-  body.className = body.className.replace('loading', '');
+  body.className = body.classList.remove('loading');
 }
 
 function buildDeck(data) {
@@ -49,24 +49,26 @@ function shuffleDeck(deck, secondPass) {
 }
 
 function cardClickHandler(event) {
-  if(document.getElementsByClassName('selected').length >= 2) {
+  if(document.getElementsByClassName('selected').length >= 2
+    || this.classList.contains('selected')
+    || this.classList.contains('matched')) {
     return false;
   }
 
-  if(this.className.indexOf('selected') > -1) {
-    this.className = this.className.replace(' selected', '');
-  } else {
-    this.className += ' selected';
-  }
+  this.classList.add('selected');
+
   let selected = document.getElementsByClassName('selected');
 
   if(selected.length >= 2) {
     setTimeout(function() {
-      const matchClass = (selected[0].getAttribute('data-id') == selected[1].getAttribute('data-id')) ? ' matched' : '';
+      const isMatch = (selected[0].getAttribute('data-id') == selected[1].getAttribute('data-id'));
       for(let i = selected.length - 1; i >= 0; i--) {
-        selected[i].className = selected[i].className.replace(' selected', matchClass);
+        if(isMatch) {
+          selected[i].classList.add('matched');
+        }
+        selected[i].classList.remove('selected');
       }
-    }, 1500);
+    }, 1000);
   }
 
 }

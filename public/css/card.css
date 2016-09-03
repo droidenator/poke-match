@@ -18,6 +18,7 @@
 
 .card-wrapper.matched {
   opacity: 0;
+  cursor: default;
 }
 
 .card {
